@@ -1,0 +1,921 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>div+css实现冰墩墩</title>
+		<style type="text/css">
+			/* 锋尘落-2022-02-18-18:25完成  原创不易 转载请注明出处*/
+			* {
+				margin: 0;
+				padding: 0
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+
+			.container {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			.flex-center {
+				justify-content: center;
+				align-items: center;
+			}
+
+			.wrap {
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+			}
+
+			.flex-1 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+
+			.position {
+				position: relative;
+				/* height: 520px; */
+				width: 590px;
+				z-index: 10000;
+				margin-top: 80px;
+			}
+
+			/* 外壳 */
+			.body-w {
+				position: absolute;
+				z-index: 20;
+				left: 27.5%;
+				bottom: -10px;
+				width: 263px;
+				height: 290px;
+				background: #34A7F4;
+				border: 4px solid #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			.location {
+				position: absolute;
+				left: 30%;
+				bottom: 0px;
+				width: 240px;
+				height: 267px;
+			}
+
+			.left-ears-w {
+				/* 左耳朵外壳 */
+				position: absolute;
+				z-index: 1;
+				left: -8px;
+				top: -22px;
+				width: 65px;
+				height: 80px;
+				background: #34A7F4;
+				border: 4px solid #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+				animation-name: ear1armanimation;
+				animation-duration: 0.5s;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				transform-origin: 80% left;
+			}
+
+			.right-ears-w {
+				/* 右耳朵外壳 */
+				position: absolute;
+				z-index: 1;
+				left: 175px;
+				top: -26px;
+				width: 65px;
+				height: 80px;
+				background: #34A7F4;
+				border: 4px solid #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+				animation-name: ear2armanimation;
+				animation-duration: 0.3s;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				transform-origin: 80% left;
+			}
+
+			.left-hand-w {
+				/* 右手外壳 */
+				position: absolute;
+				z-index: 1;
+				left: -46px;
+				top: 118px;
+				width: 74px;
+				height: 114px;
+				transform: rotate(30deg);
+				border: 4px solid #000000;
+				border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+			}
+
+			.right-hand-w {
+				/* 左手外壳 */
+				position: absolute;
+				z-index: 1;
+				left: 224px;
+				top: 40px;
+				width: 74px;
+				height: 114px;
+				transform: rotate(-325deg);
+				border: 4px solid #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			.left-foot-w {
+				/* 左腿外壳 */
+				position: absolute;
+				z-index: 1;
+				left: 35px;
+				top: 230px;
+				width: 68px;
+				height: 66px;
+				border-radius: 45% 45%;
+				border: 4px solid #000000;
+			}
+
+			.right-foot-w {
+				/* 右腿外壳 */
+				position: absolute;
+				z-index: 1;
+				left: 130px;
+				top: 230px;
+				width: 68px;
+				height: 66px;
+				border-radius: 45% 45%;
+				border: 4px solid #000000;
+			}
+
+			/* 中间铺垫层 */
+			.body-center {
+				position: absolute;
+				left: 30%;
+				bottom: 0px;
+				width: 240px;
+				height: 267px;
+			}
+
+			.left-ears-c {
+				/* 耳朵中间铺垫层 */
+				position: absolute;
+				z-index: 29;
+				left: -4px;
+				top: -15px;
+				width: 68px;
+				height: 78px;
+				background: #34A7F4;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+				animation-name: ear1armanimation;
+				animation-duration: 0.5s;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				transform-origin: 80% left;
+			}
+
+			.right-ears-c {
+				/* 耳朵中间铺垫层 */
+				position: absolute;
+				z-index: 29;
+				left: 177px;
+				top: -22px;
+				width: 68px;
+				height: 78px;
+				background: #34A7F4;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+				animation-name: ear2armanimation;
+				animation-duration: 0.3s;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				transform-origin: 80% left;
+			}
+
+			.left-hand-c {
+				/* 右手外壳 */
+				position: absolute;
+				z-index: 29;
+				left: -44px;
+				top: 130px;
+				width: 72px;
+				height: 104px;
+				transform: rotate(24deg);
+				background: #34A7F4;
+				border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+			}
+
+			.right-hand-c {
+				/* 左手外壳 */
+				position: absolute;
+				z-index: 29;
+				left: 222px;
+				top: 43px;
+				width: 76px;
+				height: 120px;
+				transform: rotate(-320deg);
+				background: #34A7F4;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			.left-foot-c {
+				/* 左腿中间铺垫层 */
+				position: absolute;
+				z-index: 29;
+				left: 39px;
+				top: 236px;
+				width: 68px;
+				height: 66px;
+				border-radius: 45% 45%;
+				background: #34A7F4;
+			}
+
+			.right-foot-c {
+				/* 右腿中间铺垫层 */
+				position: absolute;
+				z-index: 29;
+				left: 134px;
+				top: 236px;
+				width: 68px;
+				height: 66px;
+				border-radius: 45% 45%;
+				background: #34A7F4;
+			}
+
+			.body {
+				/* 身体 */
+				position: absolute;
+				z-index: 30;
+				left: 29%;
+				bottom: 0px;
+				width: 240px;
+				height: 267px;
+				background: #fff;
+				border: 6px solid #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			/* 彩带 */
+			.face {
+				position: absolute;
+				z-index: 30;
+				border-radius: 48% 48% 44% 49%/ 53% 54% 45% 47%;
+			}
+
+			.c_blue {
+				border: #6bcdf3 5px solid;
+				width: 210px;
+				height: 174px;
+				left: 12px;
+				top: 14px;
+			}
+
+			.c_yellow {
+				border: #ffc346 5px solid;
+				width: 202px;
+				height: 168px;
+				left: 16px;
+				top: 17px;
+			}
+
+			.c_black {
+				border: #000 5px solid;
+				width: 196px;
+				height: 162px;
+				left: 20px;
+				top: 20px;
+			}
+
+			.c_green {
+				border: #56E7B3 5px solid;
+				width: 188px;
+				height: 154px;
+				left: 24px;
+				top: 24px;
+			}
+
+			.c_red {
+				border: #E23475 5px solid;
+				width: 180px;
+				height: 146px;
+				left: 28px;
+				top: 28px;
+			}
+
+			.left-ears {
+				/* 耳朵 */
+				position: absolute;
+				z-index: 29;
+				left: 0;
+				top: -10px;
+				width: 60px;
+				height: 70px;
+				background: #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+				animation-name: ear1armanimation;
+				animation-duration: 0.5s;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				transform-origin: 80% left;
+			}
+
+			@keyframes ear1armanimation {
+				0% {
+					transform: rotateZ(-57deg);
+				}
+			}
+
+			.right-ears {
+				/* 耳朵 */
+				position: absolute;
+				z-index: 29;
+				left: 180px;
+				top: -15px;
+				width: 60px;
+				height: 70px;
+				background: #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+				animation-name: ear2armanimation;
+				animation-duration: 0.3s;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				transform-origin: 80% left;
+			}
+
+			@keyframes ear2armanimation {
+				0% {
+					transform: rotateZ(37deg);
+				}
+			}
+
+			.left-eye-w {
+				/* 左眼 */
+				position: absolute;
+				z-index: 30;
+				left: 50px;
+				top: 50px;
+				width: 55px;
+				height: 76px;
+				transform: rotate(45deg);
+				background: #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			.left-eye-c {
+				/* 左眼 */
+				position: absolute;
+				left: 15px;
+				top: 10px;
+				width: 34px;
+				height: 34px;
+				background: #FFFFFF;
+				border-radius: 50%;
+			}
+
+			.left-eye-n {
+				/* 左眼 */
+				position: absolute;
+				left: 3px;
+				top: 3px;
+				width: 28px;
+				height: 28px;
+				background: #000000;
+				border-radius: 50%;
+			}
+
+			.left-eye-x {
+				/* 左眼 */
+				position: absolute;
+				left: 12px;
+				top: 3px;
+				width: 6px;
+				height: 6px;
+				background: #FFFFFF;
+				border-radius: 50%;
+			}
+
+			.right-eye-w {
+				/* 右眼 */
+				position: absolute;
+				z-index: 30;
+				left: 140px;
+				top: 50px;
+				width: 55px;
+				height: 76px;
+				transform: rotate(-45deg);
+				background: #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			.right-eye-c {
+				/* 右眼 */
+				position: absolute;
+				left: 8px;
+				top: 8px;
+				width: 34px;
+				height: 34px;
+				background: #FFFFFF;
+				border-radius: 50%;
+			}
+
+			.right-eye-n {
+				/* 右眼 */
+				position: absolute;
+				left: 3px;
+				top: 3px;
+				width: 28px;
+				height: 28px;
+				background: #000000;
+				border-radius: 50%;
+			}
+
+			.right-eye-x {
+				/* 右眼 */
+				position: absolute;
+				left: 20px;
+				top: 15px;
+				width: 6px;
+				height: 6px;
+				background: #FFFFFF;
+				border-radius: 50%;
+			}
+
+			.nose {
+				position: absolute;
+				z-index: 31;
+				left: 110px;
+				top: 100px;
+				width: 25px;
+				height: 20px;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+				background: #000000;
+				box-shadow: 2px 2px 6px #000;
+			}
+
+			.mouth {
+				position: absolute;
+				z-index: 30;
+				left: 100px;
+				top: 120px;
+				width: 51.87px;
+				height: 41.67px;
+				transform: rotate(0deg);
+				background: #000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			.mouth-s {
+				position: absolute;
+				left: 5px;
+				top: -18px;
+				width: 38px;
+				height: 30px;
+				transform: rotate(0deg);
+				background: #fff;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			.mouth-x {
+				position: absolute;
+				left: 8px;
+				top: 22px;
+				width: 38px;
+				height: 20px;
+				transform: rotate(0deg);
+				background: #FF4F4F;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			.left-hand {
+				/* 右手 */
+				position: absolute;
+				z-index: 29;
+				left: -40px;
+				top: 135px;
+				width: 65px;
+				height: 95px;
+				transform: rotate(30deg);
+				background: #000000;
+				border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+			}
+
+			.right-hand {
+				/* 左手 */
+				position: absolute;
+				z-index: 29;
+				left: 230px;
+				top: 50px;
+				width: 65px;
+				height: 105px;
+				transform: rotate(-325deg);
+				background: #000000;
+				border-radius: 60% 60% 60% 60% / 50% 50% 60% 60%;
+			}
+
+			.palm {
+				position: absolute;
+				z-index: 29;
+				left: 265px;
+				top: 70px;
+				transform: rotate(20.45deg);
+			}
+
+			.chest {
+				width: 20px;
+				height: 20px;
+				margin: 0 auto;
+				position: relative;
+			}
+
+			.heart {
+				position: absolute;
+				z-index: 2;
+				background: linear-gradient(-90deg, #FF4F4F 0%, #FF4F4F 40%);
+				animation: beat 0.7s ease 0s infinite normal;
+			}
+
+			.heart.center {
+				background: linear-gradient(-45deg, #FF4F4F 0%, #FF4F4F 40%);
+			}
+
+			.heart.top {
+				z-index: 3;
+			}
+
+			.sided {
+				top: 2px;
+				width: 10px;
+				height: 10px;
+				border-radius: 5px;
+			}
+
+			.center {
+				width: 10px;
+				height: 10px;
+				bottom: 5px;
+				left: 5px;
+				transform: rotateZ(225deg);
+			}
+
+			.left {
+				left: 2px;
+			}
+
+			.right {
+				right: 2px;
+			}
+
+			@keyframes beat {
+				0% {
+					transform: scale(1) rotate(225deg);
+					box-shadow: 0 0 40px #d5093c;
+				}
+
+				50% {
+					transform: scale(1.1) rotate(225deg);
+					box-shadow: 0 0 70px #d5093c;
+				}
+
+				100% {
+					transform: scale(1) rotate(225deg);
+					box-shadow: 0 0 40px #d5093c;
+				}
+			}
+
+			.left-foot {
+				position: absolute;
+				z-index: 29;
+				left: 45px;
+				top: 230px;
+				width: 56px;
+				height: 66px;
+				border-radius: 45% 45%;
+				background: #000000;
+			}
+
+			.right-foot {
+				/* 左腿 */
+				position: absolute;
+				z-index: 29;
+				left: 140px;
+				top: 230px;
+				width: 56px;
+				height: 66px;
+				border-radius: 45% 45%;
+				background: #000000;
+			}
+
+			.auto {
+				position: absolute;
+				z-index: 30;
+				left: 0;
+				top: 0;
+			}
+
+			.logo {
+				position: absolute;
+				z-index: 30;
+				left: 105px;
+				top: 203px;
+				width: 36px;
+				height: 47px;
+				opacity: 1;
+			}
+		</style>
+	</head>
+
+	<body>
+		<iframe class="auto" frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=86
+			src="https://music.163.com/outchain/player?type=2&id=1918081293&auto=1&height=66"></iframe>
+		<div class="wrap flex-center">
+			<div class="flex-1"></div>
+			<div class="position">
+				<!-- 外壳 -->
+				<div class="body-w"></div>
+				<div class="location">
+					<div class="left-ears-w"></div>
+					<div class="right-ears-w"></div>
+					<div class="left-hand-w"></div>
+					<div class="right-hand-w"></div>
+					<div class="left-foot-w"></div>
+					<div class="right-foot-w"></div>
+				</div>
+				<!-- 圆身子 -->
+				<div class="body"></div>
+				<!-- 中间铺垫层 -->
+				<div class="body-center">
+					<div class="left-ears-c"></div>
+					<div class="right-ears-c"></div>
+					<div class="left-hand-c"></div>
+					<div class="right-hand-c"></div>
+					<div class="left-foot-c"></div>
+					<div class="right-foot-c"></div>
+				</div>
+				<!-- 内层 -->
+				<div class="location">
+					<!-- 彩带 -->
+					<div class="face c_blue"></div>
+					<div class="face c_yellow"></div>
+					<div class="face c_black"></div>
+					<div class="face c_green"></div>
+					<div class="face c_red"></div>
+					<!-- 耳朵 -->
+					<div class="left-ears"></div>
+					<div class="right-ears"></div>
+					<!-- 眼睛 -->
+					<div class="left-eye-w">
+						<div class="left-eye-c">
+							<div class="left-eye-n">
+								<div class="left-eye-x"></div>
+							</div>
+						</div>
+					</div>
+					<div class="right-eye-w">
+						<div class="right-eye-c">
+							<div class="right-eye-n">
+								<div class="right-eye-x"></div>
+							</div>
+						</div>
+					</div>
+					<!-- 鼻子 -->
+					<div class="nose"></div>
+					<!-- 嘴巴 -->
+					<div class="mouth">
+						<div class="mouth-s"></div>
+						<div class="mouth-x"></div>
+					</div>
+					<!-- 手 -->
+					<div class="left-hand"></div>
+					<div class="right-hand"></div>
+					<!-- 心 -->
+					<div class="palm">
+						<div class="chest">
+							<div class="heart left sided top"></div>
+							<div class="heart center"></div>
+							<div class="heart right sided"></div>
+						</div>
+					</div>
+					<!-- 脚 -->
+					<div class="left-foot"></div>
+					<div class="right-foot"></div>
+					<img class="logo"
+						src="https://developer.yonyou.com/data/attachment/forum/202202/17/181836hr6l9l4lr2jfvf9x.jpg">
+				</div>
+			</div>
+			<div class="flex-1"></div>
+		</div>
+		<div id="container" class="container"></div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			RENDERER.init();
+		});
+		let RENDERER = {
+			SNOW_COUNT: {
+				INIT: 100,
+				DELTA: 1
+			},
+			BACKGROUND_COLOR: 'hsl(%h, 50%, %l%)',
+			INIT_HUE: 180,
+			DELTA_HUE: 0.1,
+			init: function() {
+				this.setParameters();
+				this.reconstructMethod();
+				this.createSnow(this.SNOW_COUNT.INIT * this.countRate, true);
+				this.render();
+			},
+			setParameters: function() {
+				this.$window = $(window);
+				this.$container = $('#container');
+				this.width = this.$container.width();
+				this.height = this.$container.height();
+				this.center = {
+					x: this.width / 2,
+					y: this.height / 2
+				};
+				this.countRate = this.width * this.height / 500 / 500;
+				this.canvas = $('<canvas />').attr({
+					width: this.width,
+					height: this.height
+				}).appendTo(this.$container).get(0);
+				this.context = this.canvas.getContext('2d');
+
+				this.radius = Math.sqrt(this.center.x * this.center.x + this.center.y * this.center.y);
+				this.hue = this.INIT_HUE;
+				this.snows = [];
+			},
+			reconstructMethod: function() {
+				this.render = this.render.bind(this);
+			},
+			createSnow: function(count, toRandomize) {
+				for (var i = 0; i < count; i++) {
+					this.snows.push(new SNOW(this.width, this.height, this.center, toRandomize));
+				}
+			},
+			render: function() {
+				requestAnimationFrame(this.render);
+				var gradient = this.context.createRadialGradient(this.center.x, this.center.y, 0, this.center.x, this
+						.center.y, this.radius),
+					backgroundColor = this.BACKGROUND_COLOR.replace('%h', this.hue);
+				gradient.addColorStop(0, backgroundColor.replace('%l', 30));
+				gradient.addColorStop(0.2, backgroundColor.replace('%l', 20));
+				gradient.addColorStop(0.5, backgroundColor.replace('%l', 5));
+				this.context.fillStyle = gradient;
+				this.context.fillRect(0, 0, this.width, this.height);
+				for (var i = this.snows.length - 1; i >= 0; i--) {
+					if (!this.snows[i].render(this.context)) {
+						this.snows.splice(i, 1);
+					}
+				}
+				this.hue += this.DELTA_HUE;
+				this.hue %= 360;
+				this.createSnow(this.SNOW_COUNT.DELTA, false);
+			}
+		};
+		var SNOW = function(width, height, center, toRandomize) {
+			this.width = width;
+			this.height = height;
+			this.center = center;
+			this.init(toRandomize);
+		};
+		SNOW.prototype = {
+			RADIUS: 20,
+			OFFSET: 4,
+			INIT_POSITION_MARGIN: 20,
+			COLOR: 'rgba(255, 255, 255, 0.8)',
+			TOP_RADIUS: {
+				MIN: 1,
+				MAX: 3
+			},
+			SCALE: {
+				INIT: 0.04,
+				DELTA: 0.01
+			},
+			DELTA_ROTATE: {
+				MIN: -Math.PI / 180 / 2,
+				MAX: Math.PI / 180 / 2
+			},
+			THRESHOLD_TRANSPARENCY: 0.7,
+			VELOCITY: {
+				MIN: -1,
+				MAX: 1
+			},
+			LINE_WIDTH: 2,
+			BLUR: 10,
+
+			init: function(toRandomize) {
+				this.setParameters(toRandomize);
+				this.createSnow();
+			},
+			setParameters: function(toRandomize) {
+				if (!this.canvas) {
+					this.radius = this.RADIUS + this.TOP_RADIUS.MAX * 2 + this.LINE_WIDTH;
+					this.length = this.radius * 2;
+					this.canvas = $('<canvas />').attr({
+						width: this.length,
+						height: this.length
+					}).get(0);
+					this.context = this.canvas.getContext('2d');
+				}
+				this.topRadius = this.getRandomValue(this.TOP_RADIUS);
+				var theta = Math.PI * 2 * Math.random();
+				this.x = this.center.x + this.INIT_POSITION_MARGIN * Math.cos(theta);
+				this.y = this.center.y + this.INIT_POSITION_MARGIN * Math.sin(theta);
+				this.vx = this.getRandomValue(this.VELOCITY);
+				this.vy = this.getRandomValue(this.VELOCITY);
+
+				this.deltaRotate = this.getRandomValue(this.DELTA_ROTATE);
+				this.scale = this.SCALE.INIT;
+				this.deltaScale = 1 + this.SCALE.DELTA * 500 / Math.max(this.width, this.height);
+				this.rotate = 0;
+
+				if (toRandomize) {
+					for (var i = 0, count = Math.random() * 1000; i < count; i++) {
+						this.x += this.vx;
+						this.y += this.vy;
+						this.scale *= this.deltaScale;
+						this.rotate += this.deltaRotate;
+					}
+				}
+			},
+			getRandomValue: function(range) {
+				return range.MIN + (range.MAX - range.MIN) * Math.random();
+			},
+			createSnow: function() {
+				this.context.clearRect(0, 0, this.length, this.length);
+				this.context.save();
+				this.context.beginPath();
+				this.context.translate(this.radius, this.radius);
+				this.context.strokeStyle = this.COLOR;
+				this.context.lineWidth = this.LINE_WIDTH;
+				this.context.shadowColor = this.COLOR;
+				this.context.shadowBlur = this.BLUR;
+				var angle60 = Math.PI / 180 * 60,
+					sin60 = Math.sin(angle60),
+					cos60 = Math.cos(angle60),
+					threshold = Math.random() * this.RADIUS / this.OFFSET | 0,
+					rate = 0.5 + Math.random() * 0.5,
+					offsetY = this.OFFSET * Math.random() * 2,
+					offsetCount = this.RADIUS / this.OFFSET;
+
+				for (var i = 0; i < 6; i++) {
+					this.context.save();
+					this.context.rotate(angle60 * i);
+					for (var j = 0; j <= threshold; j++) {
+						var y = -this.OFFSET * j;
+						this.context.moveTo(0, y);
+						this.context.lineTo(y * sin60, y * cos60);
+					}
+					for (var j = threshold; j < offsetCount; j++) {
+						var y = -this.OFFSET * j,
+							x = j * (offsetCount - j + 1) * rate;
+						this.context.moveTo(x, y - offsetY);
+						this.context.lineTo(0, y);
+						this.context.lineTo(-x, y - offsetY);
+					}
+					this.context.moveTo(0, 0);
+					this.context.lineTo(0, -this.RADIUS);
+					this.context.arc(0, -this.RADIUS - this.topRadius, this.topRadius, Math.PI / 2, Math.PI * 2.5,
+						false);
+					this.context.restore();
+				}
+				this.context.stroke();
+				this.context.restore();
+			},
+			render: function(context) {
+				context.save();
+				if (this.scale > this.THRESHOLD_TRANSPARENCY) {
+					context.globalAlpha = Math.max(0, (1 - this.scale) / (1 - this.THRESHOLD_TRANSPARENCY));
+					if (this.scale > 1 || this.x < -this.radius || this.x > this.width + this.radius || this.y < -this
+						.radius || this.y > this.height + this.radius) {
+						context.restore();
+						return false;
+					}
+				}
+				context.translate(this.x, this.y);
+				context.rotate(this.rotate);
+				context.scale(this.scale, this.scale);
+				context.drawImage(this.canvas, -this.radius, -this.radius);
+				context.restore();
+				this.x += this.vx;
+				this.y += this.vy;
+				this.scale *= this.deltaScale;
+				this.rotate += this.deltaRotate;
+				return true;
+			}
+		};
+	</script>
+</html>
